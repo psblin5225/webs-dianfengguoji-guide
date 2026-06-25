@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>巅峰国际 · 资料索引与场景整理</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", sans-serif;
+            background: linear-gradient(145deg, #fdefe6 0%, #fce3d4 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #3d2c24;
+            line-height: 1.7;
+            padding: 2rem 1.5rem;
+        }
+
+        .page-wrap {
+            max-width: 1120px;
+            width: 100%;
+        }
+
+        /* 顶部导航 — 轻量无压迫 */
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0 1.5rem 0;
+            flex-wrap: wrap;
+            gap: 0.5rem 1rem;
+        }
+
+        .nav-logo {
+            font-weight: 550;
+            font-size: 1.3rem;
+            letter-spacing: 0.02em;
+            color: #5f3e2f;
+            background: rgba(255, 245, 235, 0.7);
+            padding: 0.2rem 0.8rem;
+            border-radius: 40px;
+            backdrop-filter: blur(2px);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.8rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #4e362c;
+            font-size: 0.95rem;
+            padding: 0.2rem 0.1rem;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.2s, color 0.2s;
+            font-weight: 450;
+        }
+
+        .nav-links a:hover {
+            border-bottom-color: #b68463;
+            color: #2d1f19;
+        }
+
+        /* 卡片共用 */
+        .card {
+            background: #ffffffec;
+            backdrop-filter: blur(1px);
+            border-radius: 28px;
+            padding: 2.2rem 2.5rem;
+            box-shadow: 0 8px 24px rgba(150, 100, 70, 0.08), 0 2px 6px rgba(80, 50, 30, 0.04);
+            margin-bottom: 2rem;
+            transition: box-shadow 0.25s;
+        }
+
+        .card:hover {
+            box-shadow: 0 12px 32px rgba(140, 90, 55, 0.10);
+        }
+
+        /* hero 区  —  温和开场 */
+        .hero-section {
+            text-align: center;
+            padding: 2.8rem 1.5rem 2.2rem;
+        }
+
+        .hero-section h1 {
+            font-size: 2.6rem;
+            font-weight: 460;
+            letter-spacing: 2px;
+            color: #3f2b20;
+            margin-bottom: 0.75rem;
+        }
+
+        .hero-section .sub {
+            font-size: 1.1rem;
+            color: #6f5342;
+            max-width: 720px;
+            margin: 0.5rem auto 0.2rem;
+            font-weight: 350;
+        }
+
+        .hero-divider {
+            width: 64px;
+            height: 4px;
+            background: #dbbc9f;
+            border-radius: 10px;
+            margin: 1.4rem auto 1.8rem;
+        }
+
+        .hero-desc {
+            max-width: 800px;
+            margin: 0 auto 1rem;
+            color: #4c382d;
+            font-size: 1.02rem;
+        }
+
+        .hero-desc a {
+            color: #7a5540;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            text-decoration-color: #d3b094;
+            font-weight: 470;
+            transition: color 0.2s;
+        }
+
+        .hero-desc a:hover {
+            color: #3b261d;
+        }
+
+        /* 三个场景模块 — 卡片网格 */
+        .scenes-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.8rem;
+            margin-bottom: 2.2rem;
+        }
+
+        .scene-card {
+            background: #fffbf8;
+            border-radius: 24px;
+            padding: 1.8rem 1.6rem 2rem;
+            box-shadow: 0 4px 14px rgba(130, 80, 50, 0.04);
+            border: 1px solid #f7ede5;
+            transition: transform 0.2s ease, background 0.2s;
+        }
+
+        .scene-card:hover {
+            background: #ffffff;
+            transform: translateY(-3px);
+        }
+
+        .scene-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        .scene-card h3 {
+            font-size: 1.25rem;
+            font-weight: 480;
+            color: #3d2b21;
+            margin: 0.4rem 0 0.6rem;
+            letter-spacing: 0.01em;
+        }
+
+        .scene-card p {
+            color: #5b4437;
+            font-size: 0.95rem;
+        }
+
+        .scene-card .tag {
+            display: inline-block;
+            margin-top: 1rem;
+            font-size: 0.8rem;
+            background: #efe2d8;
+            color: #4c3629;
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            letter-spacing: 0.3px;
+        }
+
+        /* 常见说明 —— 极简FAQ摘要样式 */
+        .faq-card {
+            background: #fffcf9;
+            border-radius: 28px;
+            padding: 2rem 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .faq-card h2 {
+            font-size: 1.4rem;
+            font-weight: 460;
+            color: #3a281f;
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .faq-item {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #f3e4da;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem 1.2rem;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-q {
+            min-width: 6.5rem;
+            font-weight: 480;
+            color: #4e3629;
+        }
+
+        .faq-a {
+            color: #594335;
+            flex: 1;
+        }
+
+        .faq-a a {
+            color: #6e4f3b;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-color: #dbbc9f;
+            font-weight: 450;
+        }
+
+        .faq-a a:hover {
+            color: #38271e;
+        }
+
+        /* 资料索引提示 — 柔和小模块 */
+        .info-note {
+            background: #f7ede6;
+            padding: 1rem 2rem;
+            border-radius: 60px;
+            display: inline-block;
+            font-size: 0.9rem;
+            color: #4d382b;
+            margin-top: 0.2rem;
+            border: 1px solid #edddd2;
+        }
+
+        .info-note a {
+            color: #4d382b;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-color: #d3b094;
+        }
+
+        /* footer 简单收束 */
+        .footer-note {
+            text-align: center;
+            padding: 1.2rem 0 0.8rem;
+            color: #826b5e;
+            font-size: 0.85rem;
+            border-top: 1px solid #edd9cd;
+            margin-top: 1rem;
+        }
+
+        /* 响应式 */
+        @media (max-width: 880px) {
+            .scenes-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.4rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 1rem 1rem;
+            }
+            .card {
+                padding: 1.6rem 1.2rem;
+            }
+            .hero-section h1 {
+                font-size: 2rem;
+            }
+            .scenes-grid {
+                grid-template-columns: 1fr;
+            }
+            .nav-bar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .nav-links {
+                gap: 1rem;
+            }
+            .faq-card {
+                padding: 1.5rem 1.2rem;
+            }
+            .faq-item {
+                flex-direction: column;
+                gap: 0.2rem;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .hero-section h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrap">
+
+    <!-- 导航 —— 轻量，只有基本栏目（不指向实际页面，仅示意结构） -->
+    <nav class="nav-bar">
+        <span class="nav-logo">✦ 索引</span>
+        <div class="nav-links">
+            <a href="#">整理</a>
+            <a href="#">场景</a>
+            <a href="#">说明</a>
+        </div>
+    </nav>
+
+    <!-- hero 介绍 -->
+    <div class="card hero-section">
+        <h1>巅峰国际</h1>
+        <div class="sub">资料索引 · 信息整理 · 场景备忘</div>
+        <div class="hero-divider"></div>
+        <p class="hero-desc">
+            本页围绕「<a href="https://webs-dianfengguoji.com">巅峰国际</a>」整理了一些常见的信息触点与使用场景，
+            便于快速了解其内容结构、功能倾向与资料组织方式。
+            以下三个模块分别对应不同关注角度，可作为索引参考。
+        </p>
+        <div class="info-note">
+            ⚬ 本次整理方向：内容定位与信息归类
+        </div>
+    </div>
+
+    <!-- 三个场景模块 -->
+    <div class="scenes-grid">
+        <div class="scene-card">
+            <span class="scene-icon">📂</span>
+            <h3>资料归集</h3>
+            <p>从信息整合的角度，将分散的文本与数据按主题归类，形成清晰的查阅路径。适合需要快速定位某类内容的用户。</p>
+            <span class="tag">分类索引</span>
+        </div>
+        <div class="scene-card">
+            <span class="scene-icon">🔍</span>
+            <h3>查阅参考</h3>
+            <p>当需要核对具体条目或了解模块间的关联时，可以通过结构化的标题与层级快速找到相关内容，减少重复翻找。</p>
+            <span class="tag">记录整理</span>
+        </div>
+        <div class="scene-card">
+            <span class="scene-icon">🧩</span>
+            <h3>应用示例</h3>
+            <p>将常见的使用流程拆解为小的操作单元，并附上简要说明，方便理解各个模块在整体中的位置与作用。</p>
+            <span class="tag">场景拆解</span>
+        </div>
+    </div>
+
+    <!-- 常见说明（FAQ摘要） -->
+    <div class="faq-card">
+        <h2><span>📋</span> 常见说明摘要</h2>
+        <div class="faq-item">
+            <span class="faq-q">信息定位</span>
+            <span class="faq-a">内容按主题排列，建议使用页面内导航或关键词检索。如需进一步了解整体结构，可参考 <a href="https://webs-dianfengguoji.com">巅峰国际</a> 上的分类目录。</span>
+        </div>
+        <div class="faq-item">
+            <span class="faq-q">更新频次</span>
+            <span class="faq-a">索引内容根据资料变动不定期补充，不保证实时同步，建议以原始出处为准。</span>
+        </div>
+        <div class="faq-item">
+            <span class="faq-q">场景覆盖</span>
+            <span class="faq-a">三个模块仅列举了较常见的切入点，实际使用时可根据个人习惯调整查阅顺序。更多维度可自行探索。</span>
+        </div>
+        <div class="faq-item">
+            <span class="faq-q">链接说明</span>
+            <span class="faq-a">页面中所有指向「巅峰国际」的链接均直接引导至对应站点，无中间跳转。</span>
+        </div>
+    </div>
+
+    <!-- 一个额外的温和提示，嵌入链接 -->
+    <div style="text-align: center; margin: 0.5rem 0 1.8rem;">
+        <span style="background: #fff8f2; padding: 0.4rem 1.8rem; border-radius: 60px; font-size: 0.9rem; color: #4d382b; display: inline-block; border: 1px solid #f0dfd3;">
+            ☕ 若需直接查阅完整信息，可前往 <a href="https://webs-dianfengguoji.com" style="color:#6e4f3b; text-decoration: underline; text-underline-offset: 3px;">巅峰国际</a> 获取更多内容
+        </span>
+    </div>
+
+    <!-- footer -->
+    <div class="footer-note">
+        资料索引页 · 内容仅供参考 · 具体以实际页面为准
+    </div>
+
+</div>
+</body>
+</html>
